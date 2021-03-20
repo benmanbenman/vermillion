@@ -6,13 +6,14 @@
     <meta charset="UTF-8">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script>
       function addDarkmodeWidget() {
         const options = {
           bottom: '94vh', // default: '32px'
           right: 'unset', // default: '32px'
           left: '48.5vw', // default: 'unset'
-          time: '0.5s', // default: '0.3s'
+          time: '.75s', // default: '0.3s'
           mixColor: '#fff', // default: '#fff'
           backgroundColor: '#fff',  // default: '#fff'
           buttonColorDark: '#100f2c',  // default: '#100f2c'
@@ -37,11 +38,11 @@
         var pfp = document.createElement("img");
         pfp.id = "pfp";
 
-        pfp_text.style = "position: absolute; top: 1.5vh; left: 5vw"
+        pfp_text.style = "position: fixed; top: 1.5vh; left: 5vw"
         pfp_text.appendChild(text);
-        pfp.style = "position: absolute; top: 1vh; left: 1vw; width: 60.5px; height: auto"
+        pfp.style = "position: fixed; top: 1vh; left: 1vw; width: 60.5px; height: auto"
 
-        var element = document.getElementById("body");
+        var element = document.getElementById("top");
 
         element.appendChild(pfp_text);
         element.appendChild(pfp);
@@ -103,12 +104,8 @@
         outline: none;
       }
 
-      ul {
-        margin: 0; height: 100%; overflow: hidden;
-      }
-
       #messages {
-        list-style-type: none; margin: 0;
+        list-style-type: none;
         padding: 0;
         position: relative;
         top: 6.5vh;
@@ -116,6 +113,7 @@
       
       #messages > li {
         padding: 1rem 1rem;
+        z-index: -1;
       }
 
       li:hover {
@@ -163,8 +161,15 @@
         color: rgb(129, 129, 129);
       }
 
+      .darkmode-toggle {
+        z-index: 500;
+      }
+
       #signin {
-       position: absolute; top: 2.5vh; right: 2vw; 
+       position: fixed;
+       top: 2.5vh;
+       right: 2vw;
+       z-index: 1;
       }
 
       @media only screen and (max-width: 500px) {
@@ -238,11 +243,12 @@
 
     <!-- Google sign in -->
 
-    <div class="g-signin2" id="signin" data-onsuccess="onSignIn"></div>
+    <div id="top">
+      <div class="g-signin2" id="signin" data-onsuccess="onSignIn"></div>
+    </div>
     <!-- Import socket.io script -->
-
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
+  </body>
+  <script>
       // Import socket.io
 
       var socket = io();
@@ -387,6 +393,5 @@
           document.getElementById('no2').remove();
         }
       });
-    </script>
-  </body>
+  </script>
 </html>
