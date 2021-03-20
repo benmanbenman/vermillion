@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+  overflow-x: hidden;
+  font-family: 'Roboto';
+}
+
+body {
+  margin: 0;
+  padding-bottom: 3rem;
+}
+
+#form {
+  padding: 0.25rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  height: 3rem;
+  box-sizing: border-box;
+}
+
+#form > button {
+  background: white;
+  border: none;
+  padding: 0 1rem;
+  margin: 0.25rem;
+  border-radius: 3px;
+  outline: none;
+  color: #fff;
+  display: none;
+}
+
+input { 
+  border-left: none; 
+  border-right: none; 
+  border-top: none; 
+  border-bottom: solid black 1.5px; 
+  width: 100vw; 
+  height: 3vh; 
+  font-size:20px;
+  text-align: center;
+  bottom: -0.75vh;
+  position: relative;
+  background: transparent;
+}
+
+input:focus {
+  outline: none;
+}
+
+#messages {
+  list-style-type: none;
+  padding: 0;
+  position: relative;
+  top: 6.5vh;
+}
+
+#messages > li {
+  padding: 1rem 1rem;
+  z-index: -1;
+}
+
+li:hover {
+  background-color: rgb(245, 245, 245);
+}
+
+a {
+  color: black;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: rgb(129, 129, 129);
+}
+
+a:focus {
+  outline: none;
+}
+
+h1 {
+  text-align: center;
+}
+
+::placeholder {
+  text-align: center;
+  opacity: 100%;
+}
+
+.darkmode--activated li, p, a, #form > input, ::placeholder {
+  color: white;
+}.darkmode--activated #form > input {
+  border-bottom: solid white 1px;
+}.darkmode--activated h1 {
+  color: black;
+}.darkmode--activated a:hover {
+  color: rgb(129, 129, 129);
+}
+
+.darkmode-toggle {
+  z-index: 500;
+}
+
+#signin {
+ position: fixed;
+ top: 2.5vh;
+ right: 2vw;
+ z-index: 1;
+}
+
+@media only screen and (max-width: 500px) {
+  body {
+    background: transparent;
+  }
+
+  #form {
+    width: 100vw;
+    height: 1vh;
+    z-index: 10;
+  }
+
+  input[type="color"],
+  input[type="date"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="email"],
+  input[type="month"],
+  input[type="number"],
+  input[type="password"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="text"],
+  input[type="time"],
+  input[type="url"],
+  input[type="week"],
+  select:focus,
+  textarea {
+    font-size: 16px;
+  }
+
+  input {
+    font-size: 20px;
+  }
+
+  #form > button {
+    display: block;
+    position: absolute;
+    bottom: 2vh;
+    width: 100vw;
+    height: 10vh;
+  }
+  
+  input {
+    width: 100vw;
+    bottom: 3vh;
+    z-index: 10;
+  }
+
+  ::placeholder {
+    text-align: left;
+  }
+}
