@@ -103,15 +103,19 @@
         outline: none;
       }
 
+      ul {
+        margin: 0; height: 100%; overflow: hidden;
+      }
+
       #messages {
         list-style-type: none; margin: 0;
         padding: 0;
         position: relative;
-        top: 6.5vh
+        top: 6.5vh;
       }
       
       #messages > li {
-        padding: 0.5rem 1rem;
+        padding: 1rem 1rem;
       }
 
       li:hover {
@@ -218,25 +222,33 @@
     </style>
   </head>
   <body id="body">
-    <ul id="messages"></ul>
+    <ul scroll="no" id="messages"></ul>
+
     <!-- If no messages are sent, display a message to show nothing is wrong -->
-    <div id='no_messages'>
-      <h1 id='no1'><br><br><br><br><br>¯\('-')/¯</h1>
-      <h1 id='no2'>nobody's sent any messages yet. <br>you can log in while you wait.</h1>
-    </div>
+
+    <h1 id='no1'><br><br><br><br><br>¯\('-')/¯</h1>
+    <h1 id='no2'>nobody's sent any messages yet. <br>you can log in while you wait.</h1>
+
     <form id="form" action="">
+
       <!-- Message input -->
+
       <input id="input" placeholder='Message everyone in this room' autocomplete="off" autofocus/><button></button>
     </form>
+
     <!-- Google sign in -->
+
     <div class="g-signin2" id="signin" data-onsuccess="onSignIn"></div>
     <!-- Import socket.io script -->
+
     <script src="/socket.io/socket.io.js"></script>
     <script>
       // Import socket.io
+
       var socket = io();
 
       // Help message
+
       var help = 
       `
       asked for help.
@@ -263,6 +275,7 @@
       `
 
       // Get values
+
       var messages = document.getElementById('messages');
       var form = document.getElementById('form');
       var input = document.getElementById('input');
@@ -271,7 +284,8 @@
       form.addEventListener('submit', function(e) {
         e.preventDefault();
         if (input.value) {
-          // If they are signed in with google
+          // If they are signed in with Google
+
           if (sessionStorage.getItem("name") !== undefined && sessionStorage.getItem("name") !== null) {
             d = new Date()
             socket.emit('chat message', sessionStorage.getItem("name") + ' 𐤟 ' + input.value);
@@ -281,6 +295,7 @@
             messages.appendChild(time);
           }
           // If they aren't signed in
+
           else {
             d = new Date()
             socket.emit('chat message', 'User 𐤟 ' + input.value);
@@ -296,8 +311,10 @@
       socket.on('chat message', function(msg) {
         // Commands
         // temp is used when msg is needed for its data
+
         if (msg.split('𐤟')[1].substring(1, 2) == '/') {
           // Images ( /i [link to image] )
+
           if (msg.split('𐤟')[1].substring(2, 3) == 'i' && msg.split('𐤟')[1].substring(3, 4) == ' ') {
             if (sessionStorage.getItem("name") !== undefined && sessionStorage.getItem("name") !== null) { 
               temp = sessionStorage.getItem("name")+' 𐤟 '+'<img width=\"200\" height=\"auto\" src=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\">'
@@ -307,7 +324,9 @@
               msg = temp
             }
           }
+          
           // Help ( /help )
+
           else if ((msg.split('𐤟')[1].substring(2, 3) == 'h' && msg.length < 3) || msg.split('𐤟')[1].substring(2, 6) == 'help') {
             if (sessionStorage.getItem("name") !== undefined && sessionStorage.getItem("name") !== null) {
               msg = sessionStorage.getItem("name")+help
@@ -316,7 +335,9 @@
               `User ` + help
             }
           }
+
           // Links ( /a [link] )
+
           else if (msg.split('𐤟')[1].substring(2, 3) == 'a' && msg.split('𐤟')[1].substring(3, 4) == ' ') {
            if (sessionStorage.getItem("name") !== undefined && sessionStorage.getItem("name") !== null) {
              temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1].substring(4, msg.length)+'</a>'
@@ -326,7 +347,9 @@
            }
            msg = temp
           }
+          
           // If they use a command not implemented
+
           else {
             if (sessionStorage.getItem("name") !== undefined && sessionStorage.getItem("name") !== null) { 
               msg = sessionStorage.getItem("name") + ' tried to use an unrecognised command.'
@@ -334,7 +357,9 @@
               msg = 'User tried to use an unrecognised command.'
             }
           }
+          
         // Dynamic links
+
         }else if (msg.split('𐤟')[1].substring(1, 8) == 'http://' || msg.split('𐤟')[1].substring(1, 9) == 'https://' || msg.split('𐤟')[1].substring(1, 7) == 'ftp://') {
           if (sessionStorage.getItem("name") !== undefined && sessionStorage.getItem("name") !== null) {
             temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1]+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1]+'</a>'
@@ -345,15 +370,18 @@
         }
 
         // Item is the actual message
+
         var item = document.createElement('li');
 
         item.innerHTML = msg;
         messages.appendChild(item);
 
         // Scrolls to the bottom of the document when a lot of messages are sent
+
         window.scrollTo(0, document.body.scrollHeight);
 
         // Removes " no messages " h1
+
         if (document.getElementById('no1').innerHTML) {
           document.getElementById('no1').remove();
           document.getElementById('no2').remove();
