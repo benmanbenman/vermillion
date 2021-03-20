@@ -26,14 +26,6 @@
         darkmode.showWidget();
       }
       window.addEventListener('load', addDarkmodeWidget);
-    </script>
-    <script>
-      const dark = () => {
-        var el = document.getElementById("body");
-        el.classList.toggle("dark")
-        el = document.getElementById("messages")
-        el.classList.toggle("dark-messages")
-      }
 
       function onSignIn(googleUser) {
         let profile = googleUser.getBasicProfile();
@@ -258,10 +250,10 @@
             }
           }else if (msg.split('𐤟')[1].substring(2, 3) == 'a' && msg.split('𐤟')[1].substring(3, 4) == ' ') {
            if (sessionStorage.getItem("name") !== undefined && sessionStorage.getItem("name") !== null) {
-             temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\">Link to '+msg.split('𐤟')[1].substring(4, msg.length)+'</a>'
+             temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1].substring(4, msg.length)+'</a>'
            }
            else {
-            'User 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\">Link to '+msg.split('𐤟')[1].substring(4, msg.length)+'</a>'
+            'User 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1].substring(4, msg.length)+'</a>'
            }
            msg = temp
           }else {
@@ -274,7 +266,7 @@
         // Dynamic links
         }else if (msg.split('𐤟')[1].substring(1, 8) == 'http://' || msg.split('𐤟')[1].substring(1, 9) == 'https://' || msg.split('𐤟')[1].substring(1, 7) == 'ftp://') {
           if (sessionStorage.getItem("name") !== undefined && sessionStorage.getItem("name") !== null) {
-            temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1]+'\">Link to '+msg.split('𐤟')[1]+'</a>'
+            temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1]+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1]+'</a>'
           }else {
             temp = 'User 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1]+'\">Link to '+msg.split('𐤟')[1]+'</a>'
           }
