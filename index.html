@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>vermillion</title>
+    <meta name="google-signin-client_id" content="424801076-k3qob600q4v0ccpuj3a7807o99mianc0.apps.googleusercontent.com">
+    <meta charset="UTF-8">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+    <script>
+      function addDarkmodeWidget() {
+        const options = {
+          bottom: '94vh', // default: '32px'
+          right: 'unset', // default: '32px'
+          left: '48.5vw', // default: 'unset'
+          time: '0.5s', // default: '0.3s'
+          mixColor: '#fff', // default: '#fff'
+          backgroundColor: '#fff',  // default: '#fff'
+          buttonColorDark: '#100f2c',  // default: '#100f2c'
+          buttonColorLight: '#fff', // default: '#fff'
+          saveInCookies: true, // default: true,
+          label: '', // default: ''
+          autoMatchOsTheme: true // default: true
+        }
+
+        const darkmode = new Darkmode(options);
+        darkmode.showWidget();
+      }
+      window.addEventListener('load', addDarkmodeWidget);
+    </script>
+    <script>
+      const dark = () => {
+        var el = document.getElementById("body");
+        el.classList.toggle("dark")
+        el = document.getElementById("messages")
+        el.classList.toggle("dark-messages")
+      }
+
+      function onSignIn(googleUser) {
+        let profile = googleUser.getBasicProfile();
+        sessionStorage.setItem("name", profile.getName())
+
+        var pfp_text = document.createElement("p");
+        var text = document.createTextNode(profile.getName());
+
+        var pfp = document.createElement("img");
+        pfp.id = "pfp";
+
+        pfp_text.style = "position: absolute; top: 1.5vh; left: 5vw"
+        pfp_text.appendChild(text);
+        pfp.style = "position: absolute; top: 1vh; left: 1vw; width: 60.5px; height: auto"
+
+        var element = document.getElementById("body");
+
+        element.appendChild(pfp_text);
+        element.appendChild(pfp);
+
+        document.getElementById("pfp").src = profile.getImageUrl()
+        document.getElementById("pfp").onclick = dark;
+      }
+    </script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
+
+      * {
+        overflow-x: hidden;
+        font-family: 'Roboto Mono';
+      }
+
+      body { margin: 0; padding-bottom: 3rem; }
+      #form { padding: 0.25rem; position: fixed; bottom: 0; left: 0; right: 0; display: flex; height: 3rem; box-sizing: border-box;}
+      input { border-left: none; border-right: none; border-top: none; border-bottom: solid black 1.5px; width: 100vw; height: 3vh; 
+      font-size:20px; text-align: center; bottom: -0.75vh; position: relative; background: transparent }
+      input:focus { outline: none; }
+      #form > button { background: white; border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; outline: none; 
+      color: #fff; display: none; }
+      #messages { list-style-type: none; margin: 0; padding: 0; position: relative; top: 6.5vh }
+      #messages > li { padding: 0.5rem 1rem; }
+      li:hover {background-color: rgb(245, 245, 245);}
+
+      a {
+        color: black;
+        text-decoration: underline;
+      }a:hover {
+        color: rgb(129, 129, 129);
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      ::placeholder {
+        text-align: center;
+        opacity: 100%;
+      }
+      
+      .darkmode--activated li {
+        color: white;
+      }.darkmode--activated li:hover {
+        background-color:rgb(24, 24, 24);
+      }.darkmode--activated ::placeholder {
+        color: white;
+      }.darkmode--activated #form > input {
+        color: white;
+        border-bottom: solid white 1px;
+      }.darkmode--activated p {
+        color: white;
+      }.darkmode--activated h1 {
+        color: black;
+      }.darkmode--activated a {
+        color: white;
+      }.darkmode--activated a:hover {
+        color: rgb(129, 129, 129);
+      }
+
+      #signin {
+       position: absolute; top: 2.5vh; right: 2vw; 
+      }
+
+      @media only screen and (max-width: 500px) {
+        body {
+          background: transparent;
+        }
+
+        #form {
+          width: 100vw;
+          height: 1vh;
+          z-index: 10;
+        }
+
+        input[type="color"],
+        input[type="date"],
+        input[type="datetime"],
+        input[type="datetime-local"],
+        input[type="email"],
+        input[type="month"],
+        input[type="number"],
+        input[type="password"],
+        input[type="search"],
+        input[type="tel"],
+        input[type="text"],
+        input[type="time"],
+        input[type="url"],
+        input[type="week"],
+        select:focus,
+        textarea {
+          font-size: 16px;
+        }
+
+        input {
+          font-size: 20px;
+        }
+        #form > button {
+          display: block;
+          position: absolute;
+          bottom: 2vh;
+          width: 100vw;
+          height: 10vh;
+        }
+        
+        input {
+          width: 100vw;
+          bottom: 3vh;
+          z-index: 10;
+        }
+
+        ::placeholder {
+          text-align: left;
+        }
+      }
+    </style>
+  </head>
+  <body id="body">
+    <ul id="messages"></ul>
+    <ul id="times"></ul>
+      <h1 id='no1'><br><br><br><br><br>¯\('-')/¯</h1>
+      <h1 id='no2'>nobody's sent any messages yet. <br>you can log in while you wait.</h1>
+    <form id="form" action="">
+      <input id="input" placeholder='Message everyone in this room' autocomplete="off" autofocus/><button></button>
+    </form>
+    <div class="g-signin2" id="signin" data-onsuccess="onSignIn"></div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+
+      // Help message
+      var help = 
+      `
+      asked for help.
+
+      <br>
+      <br>
+
+      /help - displays this message.
+      <br>
+      /i [link to an image] - displays an image.
+      <br>
+      /a [link] - displays a clickable hyperlink. (Automatic links are still used, but certain protocols won't be detected)
+      <br>
+      <br>
+      Planned commands:
+      <br>
+      /v [link to video] - embed a YouTube video.
+      <br>
+      [drag and drop file] - embed a downloadable file.
+      <br>
+      /f [method] - format your message in a number of ways.
+
+      Click the circle at the top to switch themes.
+      `
+
+      var messages = document.getElementById('messages');
+      var form = document.getElementById('form');
+      var input = document.getElementById('input');
+
+      // Basic messaging
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (input.value) {
+          if (sessionStorage.getItem("name") !== undefined && sessionStorage.getItem("name") !== null) {
+            d = new Date()
+            socket.emit('chat message', sessionStorage.getItem("name") + ' 𐤟 ' + input.value);
+            var time = document.createElement('li');
+            time.innerHTML = d.getHours() + ':' + d.getMinutes();
+            time.style = 'position: absolute; right: 2vw';
+            messages.appendChild(time);
+          }
+          else {
+            d = new Date()
+            socket.emit('chat message', 'User 𐤟 ' + input.value);
+            var time = document.createElement('li');
+            time.innerHTML = d.getHours() + ':' + d.getMinutes()
+            time.style = 'position: absolute; right: 2vw';
+            messages.appendChild(time);
+          }
+          input.value = ''
+        }
+      });
+
+      socket.on('chat message', function(msg) {
+        // Commands
+        // temp is used when msg is needed for its data
+        if (msg.split('𐤟')[1].substring(1, 2) == '/') {
+          if (msg.split('𐤟')[1].substring(2, 3) == 'i' && msg.split('𐤟')[1].substring(3, 4) == ' ') {
+            if (sessionStorage.getItem("name") !== undefined && sessionStorage.getItem("name") !== null) { 
+              temp = sessionStorage.getItem("name")+' 𐤟 '+'<img width=\"200\" height=\"auto\" src=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\">'
+              msg = temp
+            }else {
+              temp = 'User 𐤟 '+'<img width=\"350\" height=\"auto\" src=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\">'
+              msg = temp
+            }
+          }
+          else if ((msg.split('𐤟')[1].substring(2, 3) == 'h' && msg.length < 3) || msg.split('𐤟')[1].substring(2, 6) == 'help') {
+            if (sessionStorage.getItem("name") !== undefined && sessionStorage.getItem("name") !== null) {
+              msg = sessionStorage.getItem("name")+help
+            }
+            else {
+              `User ` + help
+            }
+          }else if (msg.split('𐤟')[1].substring(2, 3) == 'a' && msg.split('𐤟')[1].substring(3, 4) == ' ') {
+           if (sessionStorage.getItem("name") !== undefined && sessionStorage.getItem("name") !== null) {
+             temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\">Link to '+msg.split('𐤟')[1].substring(4, msg.length)+'</a>'
+           }
+           else {
+            'User 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\">Link to '+msg.split('𐤟')[1].substring(4, msg.length)+'</a>'
+           }
+           msg = temp
+          }else {
+            if (sessionStorage.getItem("name") !== undefined && sessionStorage.getItem("name") !== null) { 
+              msg = sessionStorage.getItem("name") + ' tried to use an unrecognised command.'
+            }else {
+              msg = 'User tried to use an unrecognised command.'
+            }
+          }
+        // Dynamic links
+        }else if (msg.split('𐤟')[1].substring(1, 8) == 'http://' || msg.split('𐤟')[1].substring(1, 9) == 'https://' || msg.split('𐤟')[1].substring(1, 7) == 'ftp://') {
+          if (sessionStorage.getItem("name") !== undefined && sessionStorage.getItem("name") !== null) {
+            temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1]+'\">Link to '+msg.split('𐤟')[1]+'</a>'
+          }else {
+            temp = 'User 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1]+'\">Link to '+msg.split('𐤟')[1]+'</a>'
+          }
+          msg = temp
+        }
+
+        // Item is the actual message
+        var item = document.createElement('li');
+
+        item.innerHTML = msg;
+        messages.appendChild(item);
+
+        // Scrolls to the bottom of the document when a lot of messages are sent
+        window.scrollTo(0, document.body.scrollHeight);
+
+        if (document.getElementById('no1').innerHTML) {
+          document.getElementById('no1').remove();
+          document.getElementById('no2').remove();
+        }
+      });
+    </script>
+  </body>
+</html>
