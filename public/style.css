@@ -91,10 +91,20 @@ h1 {
 }
 
 #signin {
- position: fixed;
  top: 2.5vh;
- right: 2vw;
  z-index: 1;
+ text-align: center;
+ position: relative;
+}
+
+.g-signin2 > div{
+  margin: 0 auto;
+  box-shadow: none;
+}
+
+.g-signin2 > div:hover {
+  margin: 0 auto;
+  box-shadow: none;
 }
 
 .pfp_text {
@@ -116,16 +126,6 @@ h1 {
   width: 100vw;
   background-color: white;
   top: 0%;
-}
-
-#signin {
-  text-align: center;
-  position: relative;
-}
-
-.g-signin2 > div{
-  margin: 0 auto;
-  box-shadow: none;
 }
 
 @media screen and (max-width: 767px) {
