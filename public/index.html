@@ -81,7 +81,7 @@
       if (input.value) {
           // If they are signed in with Google
 
-          if (sessionStorage.getItem("name") !== null) {
+          if (logged_in == true) {
               d = new Date()
               socket.emit('chat message', sessionStorage.getItem("name") + ' 𐤟 ' + input.value);
 
@@ -92,7 +92,7 @@
           }
           // If they aren't signed in
 
-          else {
+          else if (logged_in == false) {
               d = new Date()
               socket.emit('chat message', 'User 𐤟 ' + input.value);
               var time = document.createElement('li');
@@ -113,10 +113,10 @@
         // Images ( /i [link to image] )
 
         if (msg.split('𐤟')[1].substring(2, 3) == 'i' && msg.split('𐤟')[1].substring(3, 4) == ' ') {
-            if (sessionStorage.getItem("name") !== null) { 
+            if (logged_in == true) { 
                 temp = sessionStorage.getItem("name")+' 𐤟 '+'<img width=\"200\" height=\"auto\" src=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\">'
                 msg = temp
-            }else {
+            }else if (logged_in == false) {
                 temp = 'User 𐤟 '+'<img width=\"350\" height=\"auto\" src=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\">'
                 msg = temp
             }
@@ -124,11 +124,10 @@
             
             // Help ( /help )
 
-            else if ((msg.split('𐤟')[1].substring(2, 3) == 'h' && msg.length < 3) || msg.split('𐤟')[1].substring(2, 6) == 'help') {
-            if (sessionStorage.getItem("name") !== null) {
+            else if (msg.split('𐤟')[1].substring(2, 6) == 'help') {
+            if (logged_in == true) {
                 msg = sessionStorage.getItem("name")+help
-            }
-            else {
+            }else if (logged_in == false) {
                 `User ` + help
             }
             }
@@ -136,10 +135,9 @@
             // Links ( /a [link] )
 
             else if (msg.split('𐤟')[1].substring(2, 3) == 'a' && msg.split('𐤟')[1].substring(3, 4) == ' ') {
-            if (sessionStorage.getItem("name") !== null) {
+            if (logged_in == true) {
               temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1].substring(4, msg.length)+'</a>'
-            }
-            else {
+            }else if (logged_in == false) {
               'User 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1].substring(4, msg.length)+'</a>'
             }
             msg = temp
@@ -148,9 +146,9 @@
             // If they use a command not implemented
 
             else {
-            if (sessionStorage.getItem("name") !== null) { 
+            if (logged_in == true) { 
               msg = sessionStorage.getItem("name") + ' tried to use an unrecognised command.'
-            }else {
+            }else if (logged_in == false) {
               msg = 'User tried to use an unrecognised command.'
             }
         }
@@ -161,9 +159,9 @@
       if (/(jpg|gif|png)$/.test(msg.split('𐤟')[1]) == true) {
         alert('imag!')
       }
-      if (sessionStorage.getItem("name") !== null) {
+      if (logged_in == true) {
           temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1]+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1]+'</a>'
-      }else {
+      }else if (logged_in == false) {
           temp = 'User 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1]+'\">Link to '+msg.split('𐤟')[1]+'</a>'
       }
       msg = temp

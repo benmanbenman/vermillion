@@ -1,3 +1,5 @@
+let logged_in = false;
+
 function onSignIn(googleUser) {
     let profile = googleUser.getBasicProfile();
     sessionStorage.setItem("name", profile.getName())
@@ -20,4 +22,5 @@ function onSignIn(googleUser) {
 
     document.getElementById("pfp").src = profile.getImageUrl()
     document.getElementById("signin").style = "display: none"
+    logged_in = true;
 }

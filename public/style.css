@@ -55,14 +55,14 @@ input:focus {
   padding: 0;
   position: relative;
   top: 6.5vh;
+  z-index: 500;
 }
 
 #messages > li {
   padding: 1rem 1rem;
-  z-index: -1;
 }
 
-li:hover {
+#messages > li:hover {
   background-color: rgb(245, 245, 245);
 }
 
@@ -87,29 +87,6 @@ h1 {
   text-align: center;
   opacity: 100%;
   color: black;
-}
-
-.darkmode--activated li {
-  color: white;
-}.darkmode--activated li:hover {
-  background-color:rgb(24, 24, 24);
-}.darkmode--activated ::placeholder {
-  color: white;
-}.darkmode--activated #form > input {
-  color: white;
-  border-bottom: solid white 1px;
-}.darkmode--activated p {
-  color: white;
-}.darkmode--activated h1 {
-  color: black;
-}.darkmode--activated a {
-  color: white;
-}.darkmode--activated a:hover {
-  color: rgb(129, 129, 129);
-}
-
-.darkmode-toggle {
-  z-index: 500;
 }
 
 #signin {
