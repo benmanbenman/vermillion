@@ -60,6 +60,7 @@ input:focus {
 
 #messages > li {
   padding: 1rem 1rem;
+  z-index: 500;
 }
 
 #messages > li:hover {
@@ -117,6 +118,16 @@ h1 {
   top: 0%;
 }
 
+#signin {
+  text-align: center;
+  position: relative;
+}
+
+.g-signin2 > div{
+  margin: 0 auto;
+  box-shadow: none;
+}
+
 @media screen and (max-width: 767px) {
   * {
     overflow: hidden;
@@ -152,16 +163,6 @@ h1 {
     left: 27.5vw;
     position: absolute;
     width: 14vw;
-  }
-
-  #signin {
-    text-align: center;
-    position: relative;
-  }
-
-  .g-signin2 > div{
-    margin: 0 auto;
-    box-shadow: none;
   }
 
   img {

@@ -22,7 +22,6 @@
     <form id="form" action="">
       <!-- Message input -->
 
-      <input id="input" placeholder='Message everyone in this room' autocomplete="off" autofocus/><button></button>
     </form>
 
     <!-- Google sign in -->
@@ -71,37 +70,23 @@
 
   // Get values
 
-  var messages = document.getElementById('messages');
-  var form = document.getElementById('form');
-  var input = document.getElementById('input');
+  var messages = document.getElementById("messages");
+  var form = document.getElementById("form");
+  var input = document.getElementById("input");
 
   // Basic messaging
   form.addEventListener('submit', function(e) {
       e.preventDefault();
-      if (input.value) {
-          // If they are signed in with Google
+      if (document.getElementById("input").value) {
+          d = new Date()
+          socket.emit('chat message', sessionStorage.getItem("name") + ' 𐤟 ' + document.getElementById("input").value);
 
-          if (logged_in == true) {
-              d = new Date()
-              socket.emit('chat message', sessionStorage.getItem("name") + ' 𐤟 ' + input.value);
+          var time = document.createElement('li');
+          time.innerHTML = d.getHours() + ':' + d.getMinutes();
+          time.style = 'position: absolute; right: 2vw; z-index: 500';
+          messages.appendChild(time);
 
-              var time = document.createElement('li');
-              time.innerHTML = d.getHours() + ':' + d.getMinutes();
-              time.style = 'position: absolute; right: 2vw; z-index: 500';
-              messages.appendChild(time);
-          }
-          // If they aren't signed in
-
-          else if (logged_in == false) {
-              d = new Date()
-              socket.emit('chat message', 'User 𐤟 ' + input.value);
-              var time = document.createElement('li');
-              time.innerHTML = d.getHours() + ':' + d.getMinutes()
-              time.style = 'position: absolute; right: 2vw';
-              messages.appendChild(time);
-          }
-
-          input.value = ""
+          document.getElementById("input").value = ""
       }
   });
 
@@ -138,7 +123,7 @@
             if (logged_in == true) {
               temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1].substring(4, msg.length)+'</a>'
             }else if (logged_in == false) {
-              'User 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1].substring(4, msg.length)+'</a>'
+              'User 𐤟 ' + sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1].substring(4, msg.length)+'</a>'
             }
             msg = temp
             }
