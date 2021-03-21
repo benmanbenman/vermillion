@@ -5,8 +5,8 @@
     <link rel="icon" href="favicon.ico">
     <meta name="google-signin-client_id" content="424801076-k3qob600q4v0ccpuj3a7807o99mianc0.apps.googleusercontent.com">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="app.js"></script>
     <link rel="stylesheet" href="style.css">
@@ -26,10 +26,10 @@
     </form>
 
     <!-- Google sign in -->
-
-    <div id="top">
-      <div class="g-signin2" id="signin" data-onsuccess="onSignIn"></div>
+    <div class="header" id="header">
+        <div class="g-signin2" id="signin" data-onsuccess="onSignIn">button</div>
     </div>
+    
   </body>
   <script>
   // Import socket.io
@@ -100,7 +100,8 @@
               time.style = 'position: absolute; right: 2vw';
               messages.appendChild(time);
           }
-          input.value = ''
+
+          input.value = ""
       }
   });
 

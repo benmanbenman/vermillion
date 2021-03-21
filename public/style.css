@@ -17,7 +17,7 @@ body {
   left: 0;
   right: 0;
   display: flex;
-  height: 3rem;
+  height: 100vh;
   box-sizing: border-box;
 }
 
@@ -38,10 +38,10 @@ input {
   border-top: none; 
   border-bottom: solid #0B0A07 1.5px; 
   width: 100vw; 
-  height: 3vh; 
+  height: 3vh;
   font-size:20px;
   text-align: center;
-  bottom: -0.75vh;
+  bottom: -95vh;
   position: relative;
   background: transparent;
 }
@@ -86,6 +86,7 @@ h1 {
 ::placeholder {
   text-align: center;
   opacity: 100%;
+  color: black;
 }
 
 .darkmode--activated li {
@@ -118,55 +119,75 @@ h1 {
  z-index: 1;
 }
 
-@media only screen and (max-width: 500px) {
-  body {
-    background: transparent;
+.pfp_text {
+  position: fixed; 
+  top: 1.5vh; 
+  left: 5vw;
+}
+
+.pfp {
+  position: fixed; 
+  top: 0.5vh; 
+  left: 0.5vw;
+  width: 4vw
+}
+
+.header {
+  position: fixed;
+  height: 10vh;
+  width: 100vw;
+  background-color: white;
+  top: 0%;
+}
+
+@media screen and (max-width: 767px) {
+  * {
+    overflow: hidden;
   }
 
-  #form {
-    width: 100vw;
-    height: 1vh;
-    z-index: 10;
-  }
-
-  input[type="color"],
-  input[type="date"],
-  input[type="datetime"],
-  input[type="datetime-local"],
-  input[type="email"],
-  input[type="month"],
-  input[type="number"],
-  input[type="password"],
-  input[type="search"],
-  input[type="tel"],
-  input[type="text"],
-  input[type="time"],
-  input[type="url"],
-  input[type="week"],
-  select:focus,
-  textarea {
+  input, select, textarea {
     font-size: 16px;
   }
 
-  input {
-    font-size: 20px;
+  input:focus {
+    font-size: 16px;
   }
 
-  #form > button {
-    display: block;
+  input[type='text'],
+  input[type='number'],
+  input {
+    font-size: 16px;
+    height: 2vh;
+  }
+
+  .pfp_text {
+    text-align: center;
+    position: relative;
+  }
+
+  .no1, .no2 {
+    font-weight: lighter;
+  }
+
+  .pfp {
+    top: 1vh;
+    left: 27.5vw;
     position: absolute;
-    bottom: 2vh;
-    width: 100vw;
-    height: 10vh;
-  }
-  
-  input {
-    width: 100vw;
-    bottom: 3vh;
-    z-index: 10;
+    width: 14vw;
   }
 
-  ::placeholder {
-    text-align: left;
+  #signin {
+    text-align: center;
+    position: relative;
+  }
+
+  .g-signin2 > div{
+    margin: 0 auto;
+    box-shadow: none;
+  }
+
+  img {
+    width: 100px;
+    height: auto;
   }
 }
