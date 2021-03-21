@@ -16,8 +16,9 @@
 
     <!-- If no messages are sent, display a message to show nothing is wrong -->
 
-    <h1 id='no1'><br><br><br><br><br>¯ \ ( ' - ' ) / ¯</h1>
-    <h1 id='no2'>nobody's sent any messages yet. <br>you can log in while you wait.</h1>
+    <div id="no_messages">
+      <h1>¯ \ ( ' - ' ) / ¯<br><br>nobody's sent any messages yet. <br>you can log in while you wait.</h1>
+    </div>
 
     <form id="form" action="">
       <!-- Message input -->
@@ -164,9 +165,10 @@
 
     // Removes " no messages " h1
 
-    if (document.getElementById('no1').innerHTML) {
-        document.getElementById('no1').remove();
-        document.getElementById('no2').remove();
+    if (document.getElementById("no_messages").innerHTML) {
+      const node = document.getElementById("no_messages");
+      node.innerHTML = '';
+      document.getElementById("no_messages").remove()
     }
   });
   </script>

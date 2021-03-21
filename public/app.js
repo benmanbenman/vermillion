@@ -1,7 +1,7 @@
-let logged_in = false;
-
 const dark = () => {
-    document.getElementById("body").classList.toggle("dark")
+    document.getElementById("body").classList.toggle("dark");
+
+    localStorage.setItem("theme", document.getElementById("body").className == "dark")
 }
 
 // Google sign-in
@@ -29,9 +29,8 @@ function onSignIn(googleUser) {
     element.appendChild(pfp_text);
     element.appendChild(pfp);
 
-    document.getElementById("pfp").src = profile.getImageUrl()
-    document.getElementById("signin").style = "display: none"
-    logged_in = true;
+    document.getElementById("pfp").src = profile.getImageUrl();
+    document.getElementById("signin").style = "display: none";
 
     // Let people who signed in talk
 

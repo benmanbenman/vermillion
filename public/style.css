@@ -1,35 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
 
 * {
   overflow-x: hidden;
   font-family: 'Roboto';
+  font-weight: 400;
 }
 
 body {
   margin: 0;
   padding-bottom: 3rem;
-}
-
-#form {
-  padding: 0.25rem;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  height: 100vh;
-  box-sizing: border-box;
-}
-
-#form > button {
-  background: white;
-  border: none;
-  padding: 0 1rem;
-  margin: 0.25rem;
-  border-radius: 3px;
-  outline: none;
-  color: #fff;
-  display: none;
 }
 
 input { 
@@ -46,37 +25,16 @@ input {
   background: transparent;
 }
 
-input:focus {
+*:focus {
   outline: none;
-}
-
-#messages {
-  list-style-type: none;
-  padding: 0;
-  position: relative;
-  top: 6.5vh;
-  z-index: 500;
-}
-
-#messages > li {
-  padding: 1rem 1rem;
-  z-index: 500;
-}
-
-#messages > li:hover {
-  background-color: rgb(245, 245, 245);
 }
 
 a {
   color: black;
   text-decoration: underline;
-}
-
-a:hover {
+}a:hover {
   color: rgb(129, 129, 129);
-}
-
-a:focus {
+}a:focus {
   outline: none;
 }
 
@@ -84,10 +42,24 @@ h1 {
   text-align: center;
 }
 
-::placeholder {
-  text-align: center;
-  opacity: 100%;
-  color: black;
+#form {
+  padding: 0.25rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  height: 100vh;
+  box-sizing: border-box;
+}#form > button {
+  background: white;
+  border: none;
+  padding: 0 1rem;
+  margin: 0.25rem;
+  border-radius: 3px;
+  outline: none;
+  color: #fff;
+  display: none;
 }
 
 #signin {
@@ -97,12 +69,41 @@ h1 {
  position: relative;
 }
 
+#messages {
+  list-style-type: none;
+  padding: 0;
+  position: relative;
+  top: 6.5vh;
+  z-index: 500;
+}#messages > li {
+  padding: 1rem 1rem;
+  z-index: 500;
+}#messages > li:hover {
+  background-color: rgb(245, 245, 245);
+}
+
+#no_messages {
+  overflow: hidden;
+  line-height: 80vh;
+  height: 100%;
+  text-align: center;
+  font-weight: 300;
+}#no_messages h1 {
+  line-height: 1.5;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+::placeholder {
+  text-align: center;
+  opacity: 100%;
+  color: black;
+}
+
 .g-signin2 > div{
   margin: 0 auto;
   box-shadow: none;
-}
-
-.g-signin2 > div:hover {
+}.g-signin2 > div:hover {
   margin: 0 auto;
   box-shadow: none;
 }
@@ -151,6 +152,10 @@ h1 {
     overflow: hidden;
   }
 
+  #messages {
+    top: 10vh;
+  }
+
   input, select, textarea {
     font-size: 16px;
   }
@@ -167,15 +172,18 @@ h1 {
     height: 2vh;
   }
 
-  .no1, .no2 {
-    font-weight: lighter;
-  }
-
   .pfp {
     top: 1vh;
-    left: 27.5vw;
+    left: 32.5vw;
     position: absolute;
     width: 14vw;
+  }
+
+  .pfp_text {
+    text-align: center;
+    position: relative;
+    top: 1.5vh;
+    left: 10vw;
   }
 
   img {
