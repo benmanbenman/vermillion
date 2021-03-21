@@ -1,5 +1,6 @@
 let logged_in = false;
 
+// Google sign-in
 function onSignIn(googleUser) {
     let profile = googleUser.getBasicProfile();
     sessionStorage.setItem("name", profile.getName())
