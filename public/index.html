@@ -36,6 +36,12 @@
 
   var socket = io();
 
+  // Headers
+
+  var headers = new Headers();
+
+  headers.append('Bypass-Tunnel-Reminder', 'asdasd');
+
   // Help message
 
   var help = 
@@ -71,17 +77,17 @@
 
   // Basic messaging
   form.addEventListener('submit', function(e) {
-      alert("me call")
       e.preventDefault();
       if (input.value) {
           // If they are signed in with Google
 
-          if (sessionStorage.getItem("name") !== undefined && sessionStorage.getItem("name") !== null) {
+          if (sessionStorage.getItem("name") !== null) {
               d = new Date()
               socket.emit('chat message', sessionStorage.getItem("name") + ' 𐤟 ' + input.value);
+
               var time = document.createElement('li');
               time.innerHTML = d.getHours() + ':' + d.getMinutes();
-              time.style = 'position: absolute; right: 2vw';
+              time.style = 'position: absolute; right: 2vw; z-index: 500';
               messages.appendChild(time);
           }
           // If they aren't signed in
@@ -106,7 +112,7 @@
         // Images ( /i [link to image] )
 
         if (msg.split('𐤟')[1].substring(2, 3) == 'i' && msg.split('𐤟')[1].substring(3, 4) == ' ') {
-            if (sessionStorage.getItem("name") !== undefined && sessionStorage.getItem("name") !== null) { 
+            if (sessionStorage.getItem("name") !== null) { 
                 temp = sessionStorage.getItem("name")+' 𐤟 '+'<img width=\"200\" height=\"auto\" src=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\">'
                 msg = temp
             }else {
@@ -118,7 +124,7 @@
             // Help ( /help )
 
             else if ((msg.split('𐤟')[1].substring(2, 3) == 'h' && msg.length < 3) || msg.split('𐤟')[1].substring(2, 6) == 'help') {
-            if (sessionStorage.getItem("name") !== undefined && sessionStorage.getItem("name") !== null) {
+            if (sessionStorage.getItem("name") !== null) {
                 msg = sessionStorage.getItem("name")+help
             }
             else {
@@ -129,11 +135,11 @@
             // Links ( /a [link] )
 
             else if (msg.split('𐤟')[1].substring(2, 3) == 'a' && msg.split('𐤟')[1].substring(3, 4) == ' ') {
-            if (sessionStorage.getItem("name") !== undefined && sessionStorage.getItem("name") !== null) {
-                temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1].substring(4, msg.length)+'</a>'
+            if (sessionStorage.getItem("name") !== null) {
+              temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1].substring(4, msg.length)+'</a>'
             }
             else {
-            'User 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1].substring(4, msg.length)+'</a>'
+              'User 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1].substring(4, msg.length)+'</a>'
             }
             msg = temp
             }
@@ -141,22 +147,25 @@
             // If they use a command not implemented
 
             else {
-            if (sessionStorage.getItem("name") !== undefined && sessionStorage.getItem("name") !== null) { 
-                msg = sessionStorage.getItem("name") + ' tried to use an unrecognised command.'
+            if (sessionStorage.getItem("name") !== null) { 
+              msg = sessionStorage.getItem("name") + ' tried to use an unrecognised command.'
             }else {
-                msg = 'User tried to use an unrecognised command.'
+              msg = 'User tried to use an unrecognised command.'
             }
         }
         
-    // Dynamic links
+    // Dynamic links and images
 
     }else if (msg.split('𐤟')[1].substring(1, 8) == 'http://' || msg.split('𐤟')[1].substring(1, 9) == 'https://' || msg.split('𐤟')[1].substring(1, 7) == 'ftp://') {
-        if (sessionStorage.getItem("name") !== undefined && sessionStorage.getItem("name") !== null) {
-            temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1]+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1]+'</a>'
-        }else {
-            temp = 'User 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1]+'\">Link to '+msg.split('𐤟')[1]+'</a>'
-        }
-        msg = temp
+      if (/(jpg|gif|png)$/.test(msg.split('𐤟')[1]) == true) {
+        alert('imag!')
+      }
+      if (sessionStorage.getItem("name") !== null) {
+          temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1]+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1]+'</a>'
+      }else {
+          temp = 'User 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1]+'\">Link to '+msg.split('𐤟')[1]+'</a>'
+      }
+      msg = temp
     }
 
     // Item is the actual message

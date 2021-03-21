@@ -36,7 +36,7 @@ input {
   border-left: none; 
   border-right: none; 
   border-top: none; 
-  border-bottom: solid black 1.5px; 
+  border-bottom: solid #0B0A07 1.5px; 
   width: 100vw; 
   height: 3vh; 
   font-size:20px;
@@ -88,12 +88,21 @@ h1 {
   opacity: 100%;
 }
 
-.darkmode--activated li, p, a, #form > input, ::placeholder {
+.darkmode--activated li {
+  color: white;
+}.darkmode--activated li:hover {
+  background-color:rgb(24, 24, 24);
+}.darkmode--activated ::placeholder {
   color: white;
 }.darkmode--activated #form > input {
+  color: white;
   border-bottom: solid white 1px;
+}.darkmode--activated p {
+  color: white;
 }.darkmode--activated h1 {
   color: black;
+}.darkmode--activated a {
+  color: white;
 }.darkmode--activated a:hover {
   color: rgb(129, 129, 129);
 }
