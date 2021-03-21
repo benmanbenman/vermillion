@@ -1,5 +1,9 @@
 let logged_in = false;
 
+const dark = () => {
+    document.getElementById("body").classList.toggle("dark")
+}
+
 // Google sign-in
 function onSignIn(googleUser) {
     let profile = googleUser.getBasicProfile();
@@ -9,8 +13,12 @@ function onSignIn(googleUser) {
     var text = document.createTextNode(profile.getName());
 
     var pfp = document.createElement("img");
+
     pfp.id = "pfp";
     pfp_text.id = "pfp_text";
+
+    pfp.onclick = dark
+
     pfp.classList.add("pfp")
     pfp_text.classList.add("pfp_text")
 
@@ -30,13 +38,9 @@ function onSignIn(googleUser) {
     var message_input = document.createElement('input');
     var button = document.createElement('button')
 
-    // var m = "<input id=\"input\" placeholder=\"Message everyone in this room\" autocomplete=\"off\" autofocus></input>"
-    // var b = "<button></button>"
-
     message_input.id = "input";
     message_input.placeholder = "Message everyone in this room";
     message_input.autocomplete = "off";
-    message_input.autofocus = true;
 
     f = document.getElementById("form");
 

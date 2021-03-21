@@ -39,7 +39,7 @@ input {
   border-bottom: solid #0B0A07 1.5px; 
   width: 100vw; 
   height: 3vh;
-  font-size:20px;
+  font-size: 16px;
   text-align: center;
   bottom: -95vh;
   position: relative;
@@ -108,24 +108,42 @@ h1 {
 }
 
 .pfp_text {
-  position: fixed; 
-  top: 1.5vh; 
-  left: 5vw;
+  text-align: center;
+  position: relative;
+  top: 2vh;
+  left: 2vw;
 }
 
 .pfp {
   position: fixed; 
-  top: 0.5vh; 
-  left: 0.5vw;
+  top: 1vh;
+  left: 44vw;
   width: 4vw
+}.pfp:hover {
+  cursor: pointer;
 }
 
 .header {
   position: fixed;
   height: 10vh;
   width: 100vw;
+  text-align: center;
   background-color: white;
   top: 0%;
+}
+
+.dark {
+  color: white;
+  background-color: black;
+}.dark input {
+  border-bottom: solid white 1.5px; 
+  color: white;
+}.dark #messages > li:hover {
+  background-color: rgb(26, 26, 26);
+}.dark ::placeholder {
+  color: white; 
+}.dark .header {
+  background-color: black;
 }
 
 @media screen and (max-width: 767px) {
@@ -147,11 +165,6 @@ h1 {
     border-radius: 0;
     font-size: 16px;
     height: 2vh;
-  }
-
-  .pfp_text {
-    text-align: center;
-    position: relative;
   }
 
   .no1, .no2 {
