@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
 
 * {
   overflow-x: hidden;
@@ -23,6 +23,7 @@ input {
   bottom: -95vh;
   position: relative;
   background: transparent;
+  z-index: 500;
 }
 
 *:focus {
@@ -77,9 +78,10 @@ h1 {
   z-index: 500;
 }#messages > li {
   padding: 1rem 1rem;
-  z-index: 500;
+  z-index: 499;
 }#messages > li:hover {
   background-color: rgb(245, 245, 245);
+  z-index: 499;
 }
 
 #no_messages {
@@ -87,7 +89,7 @@ h1 {
   line-height: 80vh;
   height: 100%;
   text-align: center;
-  font-weight: 300;
+  font-weight: 100;
 }#no_messages h1 {
   line-height: 1.5;
   display: inline-block;
@@ -98,6 +100,7 @@ h1 {
   text-align: center;
   opacity: 100%;
   color: black;
+  z-index: 500;
 }
 
 .g-signin2 > div{
@@ -134,16 +137,20 @@ h1 {
 }
 
 .dark {
+  transition: .1s;
   color: white;
   background-color: black;
 }.dark input {
+  transition: .1s;
   border-bottom: solid white 1.5px; 
   color: white;
 }.dark #messages > li:hover {
+  transition: .1s;
   background-color: rgb(26, 26, 26);
 }.dark ::placeholder {
   color: white; 
 }.dark .header {
+  transition: .1s;
   background-color: black;
 }
 

@@ -22,7 +22,6 @@
 
     <form id="form" action="">
       <!-- Message input -->
-
     </form>
 
     <!-- Google sign in -->
@@ -32,17 +31,14 @@
   </body>
   <script>
   // Import socket.io
-
   var socket = io();
 
   // Headers
-
   var headers = new Headers();
 
   headers.append('Bypass-Tunnel-Reminder', 'asdasd');
 
   // Help message
-
   var help = 
   `
   asked for help.
@@ -69,7 +65,6 @@
   `
 
   // Get values
-
   var messages = document.getElementById("messages");
   var form = document.getElementById("form");
   var input = document.getElementById("input");
@@ -93,78 +88,51 @@
   socket.on('chat message', function(msg) {
     // Commands
     // temp is used when msg is needed for its data
-
     if (msg.split('𐤟')[1].substring(1, 2) == '/') {
         // Images ( /i [link to image] )
-
         if (msg.split('𐤟')[1].substring(2, 3) == 'i' && msg.split('𐤟')[1].substring(3, 4) == ' ') {
-            if (logged_in == true) { 
-                temp = sessionStorage.getItem("name")+' 𐤟 '+'<img width=\"200\" height=\"auto\" src=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\">'
-                msg = temp
-            }else if (logged_in == false) {
-                temp = 'User 𐤟 '+'<img width=\"350\" height=\"auto\" src=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\">'
-                msg = temp
-            }
-            }
+          temp = sessionStorage.getItem("name")+' 𐤟 '+'<img width=\"200\" height=\"auto\" src=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\">'
+          msg = temp
+        }
             
-            // Help ( /help )
+        // Help ( /help )
+        else if (msg.split('𐤟')[1].substring(2, 6) == 'help') {
+          msg = sessionStorage.getItem("name")+help
+        }
 
-            else if (msg.split('𐤟')[1].substring(2, 6) == 'help') {
-            if (logged_in == true) {
-                msg = sessionStorage.getItem("name")+help
-            }else if (logged_in == false) {
-                `User ` + help
-            }
-            }
-
-            // Links ( /a [link] )
-
-            else if (msg.split('𐤟')[1].substring(2, 3) == 'a' && msg.split('𐤟')[1].substring(3, 4) == ' ') {
-            if (logged_in == true) {
-              temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1].substring(4, msg.length)+'</a>'
-            }else if (logged_in == false) {
-              'User 𐤟 ' + sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1].substring(4, msg.length)+'</a>'
-            }
-            msg = temp
-            }
-            
-            // If they use a command not implemented
-
-            else {
-            if (logged_in == true) { 
-              msg = sessionStorage.getItem("name") + ' tried to use an unrecognised command.'
-            }else if (logged_in == false) {
-              msg = 'User tried to use an unrecognised command.'
-            }
+        // Links ( /a [link] )
+        else if (msg.split('𐤟')[1].substring(2, 3) == 'a' && msg.split('𐤟')[1].substring(3, 4) == ' ') {
+          temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1].substring(4, msg.length)+'</a>'
+          msg = temp
+        }
+        
+        // If they use a command not implemented
+        else {
+          msg = sessionStorage.getItem("name") + ' tried to use an unrecognised command.'
         }
         
     // Dynamic links and images
-
     }else if (msg.split('𐤟')[1].substring(1, 8) == 'http://' || msg.split('𐤟')[1].substring(1, 9) == 'https://' || msg.split('𐤟')[1].substring(1, 7) == 'ftp://') {
       if (/(jpg|gif|png)$/.test(msg.split('𐤟')[1]) == true) {
-        alert('imag!')
+        temp = sessionStorage.getItem("name")+' 𐤟 '+'<img width=\"200\" height=\"auto\" src=\"'+msg.split('𐤟')[1]+'\">'
+        msg = temp 
       }
-      if (logged_in == true) {
-          temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1]+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1]+'</a>'
-      }else if (logged_in == false) {
-          temp = 'User 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1]+'\">Link to '+msg.split('𐤟')[1]+'</a>'
+      else {
+        temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1]+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1]+'</a>'
+        msg = temp
       }
-      msg = temp
     }
 
     // Item is the actual message
-
     var item = document.createElement('li');
 
     item.innerHTML = msg;
     messages.appendChild(item);
 
     // Scrolls to the bottom of the document when a lot of messages are sent
-
     window.scrollTo(0, document.body.scrollHeight);
 
     // Removes " no messages " h1
-
     if (document.getElementById("no_messages").innerHTML) {
       const node = document.getElementById("no_messages");
       node.innerHTML = '';

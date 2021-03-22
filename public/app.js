@@ -1,7 +1,5 @@
 const dark = () => {
     document.getElementById("body").classList.toggle("dark");
-
-    localStorage.setItem("theme", document.getElementById("body").className == "dark")
 }
 
 // Google sign-in
@@ -44,5 +42,6 @@ function onSignIn(googleUser) {
     f = document.getElementById("form");
 
     f.appendChild(message_input);
+
     f.appendChild(button);
 }
