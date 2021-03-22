@@ -2,20 +2,23 @@
 <html>
   <head>
     <title>vermillion</title>
+
     <link rel="icon" href="favicon.ico">
+
     <meta name="google-signin-client_id" content="424801076-k3qob600q4v0ccpuj3a7807o99mianc0.apps.googleusercontent.com">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="app.js"></script>
+    
     <link rel="stylesheet" href="style.css">
   </head>
   <body id="body">
     <ul scroll="no" id="messages"></ul>
 
     <!-- If no messages are sent, display a message to show nothing is wrong -->
-
     <div id="no_messages">
       <h1>¯ \ ( ' - ' ) / ¯<br><br>nobody's sent any messages yet. <br>you can log in while you wait.</h1>
     </div>
@@ -88,6 +91,8 @@
   socket.on('chat message', function(msg) {
     // Commands
     // temp is used when msg is needed for its data
+    // TODO: YouTube video command
+    // TODO: Upload file & (display appropriate element)
     if (msg.split('𐤟')[1].substring(1, 2) == '/') {
         // Images ( /i [link to image] )
         if (msg.split('𐤟')[1].substring(2, 3) == 'i' && msg.split('𐤟')[1].substring(3, 4) == ' ') {
@@ -112,7 +117,10 @@
         }
         
     // Dynamic links and images
+    // TODO: Check for other popular protocols
     }else if (msg.split('𐤟')[1].substring(1, 8) == 'http://' || msg.split('𐤟')[1].substring(1, 9) == 'https://' || msg.split('𐤟')[1].substring(1, 7) == 'ftp://') {
+      // Only recognises direct links ( ends in an image extension )
+      // TODO: Find a better way of detecting a link to an image
       if (/(jpg|gif|png)$/.test(msg.split('𐤟')[1]) == true) {
         temp = sessionStorage.getItem("name")+' 𐤟 '+'<img width=\"200\" height=\"auto\" src=\"'+msg.split('𐤟')[1]+'\">'
         msg = temp 
@@ -126,6 +134,7 @@
     // Item is the actual message
     var item = document.createElement('li');
 
+    // Add the message to the message list
     item.innerHTML = msg;
     messages.appendChild(item);
 
