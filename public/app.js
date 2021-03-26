@@ -1,12 +1,15 @@
+// Dark mode
 const dark = () => {
     document.getElementById("body").classList.toggle("dark");
-}
+};
 
-// Google sign-in
+// Old google sign-in
 function onSignIn(googleUser) {
     let profile = googleUser.getBasicProfile();
     sessionStorage.setItem("name", profile.getName())
+    sessionStorage.setItem("profile", profile.getImageUrl())
 
+    // Add profile to the header
     var pfp_text = document.createElement("p");
     var text = document.createTextNode(profile.getName());
 
@@ -15,6 +18,7 @@ function onSignIn(googleUser) {
     pfp.id = "pfp";
     pfp_text.id = "pfp_text";
 
+    // Dark mode
     pfp.onclick = dark
 
     pfp.classList.add("pfp")
@@ -31,7 +35,6 @@ function onSignIn(googleUser) {
     document.getElementById("signin").style = "display: none";
 
     // Let people who signed in talk
-
     var message_input = document.createElement('input');
     var button = document.createElement('button')
 
