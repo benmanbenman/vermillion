@@ -11,7 +11,7 @@ const port = process.env.PORT || 3001;
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 app.get('/', () => {
-  app.use(express.static(__dirname + '/public'))
+  app.use(express.static(path.join(__dirname, 'public')))
 });
 
 io.on('connection', (socket) => {
