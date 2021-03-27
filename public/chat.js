@@ -20,6 +20,8 @@ asked for help.
 <br>
 /a [link] - displays a clickable hyperlink. (Automatic links are still used, but certain protocols won't be detected)
 <br>
+/tts [message] - sends a text to speech message.
+<br>
 <br>
 Planned commands:
 <br>
@@ -76,11 +78,10 @@ if (msg.split('𐤟')[1].substring(1, 2) == '/') {
         msg = temp
     }
 
-    // TTS
+    // TTS ( /tts [message] )
     else if (msg.split('𐤟')[1].substring(2, 5) == 'tts') {
-        window.speechSynthesis.speak(new SpeechSynthesisUtterance(msg.split("tts")[1]));
+        window.speechSynthesis.speak(new SpeechSynthesisUtterance(msg.split("𐤟")[0] + ' said ' + msg.split("tts")[1]));
         temp = sessionStorage.getItem("name") + ' 𐤟 ' + msg.split('tts')[1] + ' ( TTS )'
-        alert(temp)
         msg = temp
     }
     
