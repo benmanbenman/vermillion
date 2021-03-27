@@ -1996,6 +1996,11 @@
     "socket.io-adapter" "~2.1.0"
     "socket.io-parser" "~4.0.3"
 
+"spoken@^1.1.17":
+  "integrity" "sha512-cERSTzRpvxCLCAAXEaO0Nt8ksXiDNxqNFwW2WnxFkkXaXLIdFc/GXIzG3OWzAZ4Nre+1UsPLgMrFXWZg3t+G0w=="
+  "resolved" "https://registry.npmjs.org/spoken/-/spoken-1.1.17.tgz"
+  "version" "1.1.17"
+
 "statuses@>= 1.5.0 < 2", "statuses@~1.5.0":
   "integrity" "sha1-Fhx9rBd2Wf2YEfQ3cfqZOBR4Yow="
   "resolved" "https://registry.npmjs.org/statuses/-/statuses-1.5.0.tgz"

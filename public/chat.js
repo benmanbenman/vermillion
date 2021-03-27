@@ -75,15 +75,23 @@ if (msg.split('𐤟')[1].substring(1, 2) == '/') {
         temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1].substring(4, msg.length)+'</a>'
         msg = temp
     }
+
+    // TTS
+    else if (msg.split('𐤟')[1].substring(2, 5) == 'tts') {
+        window.speechSynthesis.speak(new SpeechSynthesisUtterance(msg.split("tts")[1]));
+        temp = sessionStorage.getItem("name") + ' 𐤟 ' + msg.split('tts')[1] + ' ( TTS )'
+        alert(temp)
+        msg = temp
+    }
     
     // If they use a command not implemented
     else {
         msg = sessionStorage.getItem("name") + ' tried to use an unrecognised command.'
     }
-    
+}
 // Dynamic links and images
 // TODO: Check for other popular protocols
-}else if (msg.split('𐤟')[1].substring(1, 8) == 'http://' || msg.split('𐤟')[1].substring(1, 9) == 'https://' || msg.split('𐤟')[1].substring(1, 7) == 'ftp://') {
+else if (msg.split('𐤟')[1].substring(1, 8) == 'http://' || msg.split('𐤟')[1].substring(1, 9) == 'https://' || msg.split('𐤟')[1].substring(1, 7) == 'ftp://') {
     // Only recognises direct links ( ends in an image extension )
     // TODO: Find a better way of detecting a link to an image
     if (/(jpg|gif|png)$/.test(msg.split('𐤟')[1]) == true) {
