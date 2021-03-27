@@ -10,7 +10,8 @@ const port = process.env.PORT || 3001;
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
-app.get('/', () => {
+app.get('/', (req, res) => {
+  res.redirect('/index.html')
   app.use(express.static(path.join(__dirname, 'public')))
 });
 
