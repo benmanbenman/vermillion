@@ -18,6 +18,7 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => {
   console.log('connection!');
   socket.on('chat message', msg => {
+    if (msg.split('𐤟')[1] == ' goodbye') { msg = 'DONUT GO!!!' }
     io.emit('chat message', msg);
     console.log(msg + ' ' +socket.id)
   });
