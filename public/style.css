@@ -4,9 +4,7 @@
   overflow-x: hidden;
   font-family: 'Roboto';
   font-weight: 400;
-}
-
-body {
+}body {
   margin: 0;
   padding-bottom: 3rem;
 }
@@ -76,7 +74,7 @@ h1 {
   padding: 0;
   position: relative;
   top: 6.5vh;
-  z-index: 500;
+  z-index: 499;
 }#messages > li {
   padding: 1rem 1rem;
   z-index: 0;

@@ -115,7 +115,7 @@ messages.appendChild(item);
 window.scrollTo(0, document.body.scrollHeight);
 
 // Removes " no messages " h1
-if (document.getElementById("no_messages").innerHTML) {
+if (document.getElementById("no_messages").innerHTML != null) {
     const node = document.getElementById("no_messages");
     node.innerHTML = '';
     document.getElementById("no_messages").remove()
