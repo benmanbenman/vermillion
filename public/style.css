@@ -11,18 +11,19 @@ body {
   padding-bottom: 3rem;
 }
 
-input { 
-  border-left: none; 
-  border-right: none; 
-  border-top: none; 
-  border-bottom: solid #0B0A07 1.5px; 
-  width: 100vw; 
+input {
+  background-color: white;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: solid #0B0A07 1.5px;
+  width: 100vw;
+  left: 0;
   height: 3vh;
   font-size: 16px;
   text-align: center;
-  bottom: -95vh;
-  position: relative;
-  background: transparent;
+  bottom: 1vh;
+  position: fixed;
   z-index: 500;
 }
 
@@ -78,10 +79,10 @@ h1 {
   z-index: 500;
 }#messages > li {
   padding: 1rem 1rem;
-  z-index: 499;
+  z-index: 0;
 }#messages > li:hover {
   background-color: rgb(245, 245, 245);
-  z-index: 499;
+  z-index: 0;
 }
 
 #no_messages {
@@ -129,11 +130,12 @@ h1 {
 
 .header {
   position: fixed;
-  height: 10vh;
+  height: 8vh;
   width: 100vw;
   text-align: center;
   background-color: white;
   top: 0%;
+  z-index: 500;
 }
 
 .dark {
@@ -144,6 +146,7 @@ h1 {
   transition: .1s;
   border-bottom: solid white 1.5px; 
   color: white;
+  background-color: black;
 }.dark #messages > li:hover {
   transition: .1s;
   background-color: rgb(26, 26, 26);

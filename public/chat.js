@@ -81,13 +81,12 @@ if (msg.split('𐤟')[1].substring(1, 2) == '/') {
     // TTS ( /tts [message] )
     else if (msg.split('𐤟')[1].substring(2, 5) == 'tts') {
         window.speechSynthesis.speak(new SpeechSynthesisUtterance(msg.split("𐤟")[0] + ' said ' + msg.split("tts")[1]));
-        temp = sessionStorage.getItem("name") + ' 𐤟 ' + msg.split('tts')[1] + ' ( TTS )'
-        msg = temp
     }
     
     // If they use a command not implemented
     else {
-        msg = sessionStorage.getItem("name") + ' tried to use an unrecognised command.'
+        temp = sessionStorage.getItem("name") + ' tried to use an unrecognised command.'
+        msg = temp;
     }
 }
 // Dynamic links and images
@@ -96,12 +95,12 @@ else if (msg.split('𐤟')[1].substring(1, 8) == 'http://' || msg.split('𐤟')[
     // Only recognises direct links ( ends in an image extension )
     // TODO: Find a better way of detecting a link to an image
     if (/(jpg|gif|png)$/.test(msg.split('𐤟')[1]) == true) {
-    temp = sessionStorage.getItem("name")+' 𐤟 '+'<img width=\"200\" height=\"auto\" src=\"'+msg.split('𐤟')[1]+'\">'
-    msg = temp 
+        temp = sessionStorage.getItem("name")+' 𐤟 '+'<img width=\"200\" height=\"auto\" src=\"'+msg.split('𐤟')[1]+'\">'
+        msg = temp 
     }
     else {
-    temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1]+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1]+'</a>'
-    msg = temp
+        temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1]+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1]+'</a>'
+        msg = temp
     }
 }
 
