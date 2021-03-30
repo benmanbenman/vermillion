@@ -1,7 +1,7 @@
 // Import socket.io
 var socket = io();
 
-console.log(emojify.replace('I am happy :)'));
+emojify.setConfig({img_dir : 'emoji'});
 
 // Help message
 const help = 
@@ -99,9 +99,9 @@ else if (msg.split('𐤟')[1].substring(1, 8) == 'http://' || msg.split('𐤟')[
         msg = temp
     }
 }else if (msg.split('𐤟')[1].substring(1, 2) == ':') {
-    alert('called')
-    temp = emoji.replace_colons(msg.split('𐤟')[1]);
-    msg = temp
+    var e = (msg.split('𐤟')[1]).split(' ')[1]
+    var temp = sessionStorage.getItem("name") + ' 𐤟 ' + emojify.replace(e);
+    var msg = temp
 }
 
 // Item is the actual message
