@@ -1,10 +1,7 @@
 // Import socket.io
 var socket = io();
 
-// Headers
-var headers = new Headers();
-
-headers.append('Bypass-Tunnel-Reminder', 'asdasd');
+console.log(emojify.replace('I am happy :)'));
 
 // Help message
 const help = 
@@ -59,7 +56,7 @@ socket.on('chat message', function(msg) {
 // Commands
 // temp is used when msg is needed for its data
 // TODO: YouTube video command
-// TODO: Upload file & (display appropriate element)
+// TODO: Upload file & display appropriate element
 if (msg.split('𐤟')[1].substring(1, 2) == '/') {
     // Images ( /i [link to image] )
     if (msg.split('𐤟')[1].substring(2, 3) == 'i' && msg.split('𐤟')[1].substring(3, 4) == ' ') {
@@ -90,7 +87,6 @@ if (msg.split('𐤟')[1].substring(1, 2) == '/') {
     }
 }
 // Dynamic links and images
-// TODO: Check for other popular protocols
 else if (msg.split('𐤟')[1].substring(1, 8) == 'http://' || msg.split('𐤟')[1].substring(1, 9) == 'https://' || msg.split('𐤟')[1].substring(1, 7) == 'ftp://') {
     // Only recognises direct links ( ends in an image extension )
     // TODO: Find a better way of detecting a link to an image
@@ -102,6 +98,10 @@ else if (msg.split('𐤟')[1].substring(1, 8) == 'http://' || msg.split('𐤟')[
         temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1]+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1]+'</a>'
         msg = temp
     }
+}else if (msg.split('𐤟')[1].substring(1, 2) == ':') {
+    alert('called')
+    temp = emoji.replace_colons(msg.split('𐤟')[1]);
+    msg = temp
 }
 
 // Item is the actual message
@@ -115,10 +115,12 @@ messages.appendChild(item);
 window.scrollTo(0, document.body.scrollHeight);
 
 // Removes " no messages " h1
-if (document.getElementById("no_messages").innerHTML != null) {
+if (document.getElementById("no_messages") == null) {
+
+}
+else {
     const node = document.getElementById("no_messages");
     node.innerHTML = '';
-    document.getElementById("no_messages").remove()
+    document.getElementById("no_messages").remove() 
 }
 });
- 
