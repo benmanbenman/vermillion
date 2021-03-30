@@ -1,5 +1,5 @@
 // Import socket.io
-var socket = io();
+const socket = io();
 
 // Help message
 const help = 
@@ -51,6 +51,9 @@ form.addEventListener('submit', function(e) {
 });
 
 socket.on('chat message', function(msg) {
+    temp = emojify(msg)
+    msg = temp
+
     // Commands
     // temp is used when msg is needed for its data
     // TODO: YouTube video command
@@ -96,10 +99,6 @@ socket.on('chat message', function(msg) {
             temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1]+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1]+'</a>'
             msg = temp
         }
-    }else if (msg.split(':'[1] !== null)) {
-        var e = (msg.split('𐤟')[1]).split(' ')[1]
-        var temp = sessionStorage.getItem("name") + ' 𐤟 ' + emojify.replace(e);
-        var msg = temp
     }
 
     // Item is the actual message
