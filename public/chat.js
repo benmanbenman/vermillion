@@ -1,8 +1,6 @@
 // Import socket.io
 var socket = io();
 
-emojify.setConfig({img_dir : 'emoji'});
-
 // Help message
 const help = 
 `
@@ -53,74 +51,74 @@ form.addEventListener('submit', function(e) {
 });
 
 socket.on('chat message', function(msg) {
-// Commands
-// temp is used when msg is needed for its data
-// TODO: YouTube video command
-// TODO: Upload file & display appropriate element
-if (msg.split('𐤟')[1].substring(1, 2) == '/') {
-    // Images ( /i [link to image] )
-    if (msg.split('𐤟')[1].substring(2, 3) == 'i' && msg.split('𐤟')[1].substring(3, 4) == ' ') {
-        temp = sessionStorage.getItem("name")+' 𐤟 '+'<img width=\"200\" height=\"auto\" src=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\">'
-        msg = temp
-    }
+    // Commands
+    // temp is used when msg is needed for its data
+    // TODO: YouTube video command
+    // TODO: Upload file
+    if (msg.split('𐤟')[1].substring(1, 2) == '/') {
+        // Images ( /i [link to image] )
+        if (msg.split('𐤟')[1].substring(2, 3) == 'i' && msg.split('𐤟')[1].substring(3, 4) == ' ') {
+            temp = sessionStorage.getItem("name")+' 𐤟 '+'<img width=\"200\" height=\"auto\" src=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\">'
+            msg = temp
+        }
+            
+        // Help ( /help )
+        else if (msg.split('𐤟')[1].substring(2, 6) == 'help') {
+            msg = sessionStorage.getItem("name")+help
+        }
+
+        // Links ( /a [link] )
+        else if (msg.split('𐤟')[1].substring(2, 3) == 'a' && msg.split('𐤟')[1].substring(3, 4) == ' ') {
+            temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1].substring(4, msg.length)+'</a>'
+            msg = temp
+        }
+
+        // TTS ( /tts [message] )
+        else if (msg.split('𐤟')[1].substring(2, 5) == 'tts') {
+            window.speechSynthesis.speak(new SpeechSynthesisUtterance(msg.split("𐤟")[0] + ' said ' + msg.split("tts")[1]));
+        }
         
-    // Help ( /help )
-    else if (msg.split('𐤟')[1].substring(2, 6) == 'help') {
-        msg = sessionStorage.getItem("name")+help
+        // If they use a command not implemented
+        else {
+            temp = sessionStorage.getItem("name") + ' tried to use an unrecognised command.'
+            msg = temp;
+        }
+    }
+    // Dynamic links and images
+    else if (msg.split('𐤟')[1].substring(1, 8) == 'http://' || msg.split('𐤟')[1].substring(1, 9) == 'https://' || msg.split('𐤟')[1].substring(1, 7) == 'ftp://') {
+        // Only recognises direct links ( ends in an image extension )
+        // TODO: Find a better way of detecting a link to an image
+        if (/(jpg|gif|png)$/.test(msg.split('𐤟')[1]) == true) {
+            temp = sessionStorage.getItem("name")+' 𐤟 '+'<img width=\"200\" height=\"auto\" src=\"'+msg.split('𐤟')[1]+'\">'
+            msg = temp 
+        }
+        else {
+            temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1]+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1]+'</a>'
+            msg = temp
+        }
+    }else if (msg.split(':'[1] !== null)) {
+        var e = (msg.split('𐤟')[1]).split(' ')[1]
+        var temp = sessionStorage.getItem("name") + ' 𐤟 ' + emojify.replace(e);
+        var msg = temp
     }
 
-    // Links ( /a [link] )
-    else if (msg.split('𐤟')[1].substring(2, 3) == 'a' && msg.split('𐤟')[1].substring(3, 4) == ' ') {
-        temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1].substring(4, msg.length)+'</a>'
-        msg = temp
-    }
+    // Item is the actual message
+    var item = document.createElement('li');
 
-    // TTS ( /tts [message] )
-    else if (msg.split('𐤟')[1].substring(2, 5) == 'tts') {
-        window.speechSynthesis.speak(new SpeechSynthesisUtterance(msg.split("𐤟")[0] + ' said ' + msg.split("tts")[1]));
+    // Add the message to the message list
+    item.innerHTML = msg;
+    messages.appendChild(item);
+
+    // Scrolls to the bottom of the document when a lot of messages are sent
+    window.scrollTo(0, document.body.scrollHeight);
+
+    // Removes " no messages " h1
+    if (document.getElementById("no_messages") == null) {
+
     }
-    
-    // If they use a command not implemented
     else {
-        temp = sessionStorage.getItem("name") + ' tried to use an unrecognised command.'
-        msg = temp;
+        const node = document.getElementById("no_messages");
+        node.innerHTML = '';
+        document.getElementById("no_messages").remove() 
     }
-}
-// Dynamic links and images
-else if (msg.split('𐤟')[1].substring(1, 8) == 'http://' || msg.split('𐤟')[1].substring(1, 9) == 'https://' || msg.split('𐤟')[1].substring(1, 7) == 'ftp://') {
-    // Only recognises direct links ( ends in an image extension )
-    // TODO: Find a better way of detecting a link to an image
-    if (/(jpg|gif|png)$/.test(msg.split('𐤟')[1]) == true) {
-        temp = sessionStorage.getItem("name")+' 𐤟 '+'<img width=\"200\" height=\"auto\" src=\"'+msg.split('𐤟')[1]+'\">'
-        msg = temp 
-    }
-    else {
-        temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1]+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1]+'</a>'
-        msg = temp
-    }
-}else if (msg.split('𐤟')[1].substring(1, 2) == ':') {
-    var e = (msg.split('𐤟')[1]).split(' ')[1]
-    var temp = sessionStorage.getItem("name") + ' 𐤟 ' + emojify.replace(e);
-    var msg = temp
-}
-
-// Item is the actual message
-var item = document.createElement('li');
-
-// Add the message to the message list
-item.innerHTML = msg;
-messages.appendChild(item);
-
-// Scrolls to the bottom of the document when a lot of messages are sent
-window.scrollTo(0, document.body.scrollHeight);
-
-// Removes " no messages " h1
-if (document.getElementById("no_messages") == null) {
-
-}
-else {
-    const node = document.getElementById("no_messages");
-    node.innerHTML = '';
-    document.getElementById("no_messages").remove() 
-}
 });
