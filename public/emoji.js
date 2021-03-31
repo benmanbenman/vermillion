@@ -969,15 +969,18 @@ const get_json = () => {
 }
 
 const emojify = (str) => {
-    const emoji = get_json()
+    const e = get_json();
 
-    str = str.toLowerCase().split(" ")
+    str_lower = str.toLowerCase();
 
-    str.forEach((token, index) => {
-        if (emoji.hasOwnProperty(token)) {
-            str[index] = emoji[token]
+    str_token = str.split(" ")
+    str_lower_token = str_lower.split(" ")
+
+    str_lower_token.forEach((t, i) => {
+        if (e.hasOwnProperty(t)) {
+            str_token[i] = e[t];
         }
     });
 
-    return(str.join(" "))
+    return(str_token.join(" "));
 }

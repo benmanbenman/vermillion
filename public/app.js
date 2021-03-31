@@ -3,7 +3,6 @@ const dark = () => {
     document.getElementById("body").classList.toggle("dark");
 };
 
-// Old google sign-in
 function onSignIn(googleUser) {
     let profile = googleUser.getBasicProfile();
     sessionStorage.setItem("name", profile.getName())
@@ -41,7 +40,7 @@ function onSignIn(googleUser) {
     message_input.id = "input";
     message_input.placeholder = "Message everyone in this room";
     message_input.autocomplete = "off";
-
+    message_input.onkeypress = function(){message_input.value = emojify(message_input.value)}
     f = document.getElementById("form");
 
     f.appendChild(message_input);
