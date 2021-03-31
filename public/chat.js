@@ -18,14 +18,6 @@ asked for help.
 /tts [message] - sends a text to speech message.
 <br>
 <br>
-Planned commands:
-<br>
-/v [link to video] - embed a YouTube video.
-<br>
-[drag and drop file] - embed a downloadable file.
-<br>
-/f [method] - format your message in a number of ways.
-
 Click your profile picture at the top to switch themes.
 `
 
@@ -61,42 +53,41 @@ socket.on('chat message', function(msg) {
     if (msg.split('𐤟')[1].substring(1, 2) == '/') {
         // Images ( /i [link to image] )
         if (msg.split('𐤟')[1].substring(2, 3) == 'i' && msg.split('𐤟')[1].substring(3, 4) == ' ') {
-            temp = sessionStorage.getItem("name")+' 𐤟 '+'<img width=\"200\" height=\"auto\" src=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\">'
+            temp = msg.split(' 𐤟 ')[0] +' 𐤟 '+ '<img width=\"200\" height=\"auto\" src=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\">'
             msg = temp
         }
             
         // Help ( /help )
         else if (msg.split('𐤟')[1].substring(2, 6) == 'help') {
-            msg = sessionStorage.getItem("name")+help
+            msg = msg.split(' 𐤟 ')[0] + help
         }
 
         // Links ( /a [link] )
         else if (msg.split('𐤟')[1].substring(2, 3) == 'a' && msg.split('𐤟')[1].substring(3, 4) == ' ') {
-            temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1].substring(4, msg.length)+'</a>'
+            temp = msg.split(' 𐤟 ')[0] +' 𐤟 '+'<a href=\"'+msg.split('𐤟')[1].substring(4, msg.length)+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1].substring(4, msg.length)+'</a>'
             msg = temp
         }
 
         // TTS ( /tts [message] )
         else if (msg.split('𐤟')[1].substring(2, 5) == 'tts') {
-            window.speechSynthesis.speak(new SpeechSynthesisUtterance(msg.split("𐤟")[0] + ' said ' + msg.split("tts")[1]));
+            window.speechSynthesis.speak(new SpeechSynthesisUtterance(msg.split(" 𐤟 ")[0] + ' said ' + msg.split("tts")[1]));
         }
-        
-        // If they use a command not implemented
+
         else {
-            temp = sessionStorage.getItem("name") + ' tried to use an unrecognised command.'
-            msg = temp;
+            temp = msg.split(' 𐤟 ')[0] + ' 𐤟 ' + ' tried to use an unrecognised command.'
+            msg = temp
         }
     }
     // Dynamic links and images
-    else if (msg.split('𐤟')[1].substring(1, 8) == 'http://' || msg.split('𐤟')[1].substring(1, 9) == 'https://' || msg.split('𐤟')[1].substring(1, 7) == 'ftp://') {
+    else if (msg.split(' 𐤟 ')[1].substring(1, 8) == 'http://' || msg.split('𐤟')[1].substring(1, 9) == 'https://' || msg.split('𐤟')[1].substring(1, 7) == 'ftp://') {
         // Only recognises direct links ( ends in an image extension )
         // TODO: Find a better way of detecting a link to an image
         if (/(jpg|gif|png)$/.test(msg.split('𐤟')[1]) == true) {
-            temp = sessionStorage.getItem("name")+' 𐤟 '+'<img width=\"200\" height=\"auto\" src=\"'+msg.split('𐤟')[1]+'\">'
+            temp = msg.split(' 𐤟 ')[0] +' 𐤟 '+'<img width=\"200\" height=\"auto\" src=\"'+msg.split('𐤟')[1]+'\">'
             msg = temp 
         }
         else {
-            temp = sessionStorage.getItem("name") + ' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1]+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1]+'</a>'
+            temp = msg.split(' 𐤟 ')[0] +' 𐤟 ' + '<a href=\"'+msg.split('𐤟')[1]+'\" target=\"_blank\" >Link to '+msg.split('𐤟')[1]+'</a>'
             msg = temp
         }
     }
@@ -109,7 +100,7 @@ socket.on('chat message', function(msg) {
     messages.appendChild(item);
 
     // Scrolls to the bottom of the document when a lot of messages are sent
-    window.scrollTo(0, document.body.scrollHeight);
+    document.getElementById("messages").scrollTo(0, document.getElementById("messages").scrollHeight);
 
     // Removes " no messages " h1
     if (document.getElementById("no_messages") == null) {
@@ -118,6 +109,8 @@ socket.on('chat message', function(msg) {
     else {
         const node = document.getElementById("no_messages");
         node.innerHTML = '';
-        document.getElementById("no_messages").remove() 
+        document.getElementById("no_messages").remove();
+
+        document.getElementById("messages").style = "width: 100vw; height: 80vh;";
     }
 });
