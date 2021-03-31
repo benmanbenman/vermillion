@@ -137,21 +137,17 @@ h1 {
 }
 
 .dark {
-  transition: .1s;
   color: white;
   background-color: black;
 }.dark input {
-  transition: .1s;
   border-bottom: solid white 1.5px; 
   color: white;
   background-color: black;
 }.dark #messages > li:hover {
-  transition: .1s;
   background-color: rgb(17, 17, 17);
 }.dark ::placeholder {
   color: white;
 }.dark .header {
-  transition: .1s;
   background-color: black;
 }
 
