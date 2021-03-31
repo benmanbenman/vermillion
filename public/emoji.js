@@ -962,7 +962,9 @@ const get_json = () => {
         ":zimbabwe:": "🇿🇼",
         ":england:": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
         ":scotland:": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
-        ":wales:": "🏴󠁧󠁢󠁷󠁬󠁳󠁿"
+        ":wales:": "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
+        ":joshua:" : "glaaaaaaaaaaaases",
+        ":josh:" : "glaaaaaaaaaaaaases"
     }
 }
 
