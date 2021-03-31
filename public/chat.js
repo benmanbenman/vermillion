@@ -13,11 +13,13 @@ asked for help.
 <br>
 /i [link to an image] - displays an image.
 <br>
-/a [link] - displays a clickable hyperlink. (Automatic links are still used, but certain protocols won't be detected)
+/a [link] - displays a clickable hyperlink.
 <br>
 /tts [message] - sends a text to speech message.
 <br>
 <br>
+Automatic links and image links are used, but some protocols won't be detected <br>
+and non-direct links to images won't be detected automatically. <br>
 Click your profile picture at the top to switch themes.
 `
 
