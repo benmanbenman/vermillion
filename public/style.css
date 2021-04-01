@@ -11,16 +11,13 @@
 
 input {
   background-color: white;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  border-bottom: solid #0B0A07 1.5px;
+  border: none;
   width: 100vw;
   left: 0;
-  height: 3vh;
+  height: 5vh;
   font-size: 16px;
   text-align: center;
-  bottom: 1vh;
+  bottom: 0vh;
   position: fixed;
   z-index: 500;
 }
@@ -140,7 +137,6 @@ h1 {
   color: white;
   background-color: black;
 }.dark input {
-  border-bottom: solid white 1.5px; 
   color: white;
   background-color: black;
 }.dark #messages > li:hover {

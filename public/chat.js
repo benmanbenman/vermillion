@@ -17,6 +17,8 @@ asked for help.
 <br>
 /tts [message] - sends a text to speech message.
 <br>
+/html [html] - alter the innerHTML of the message.
+<br>
 <br>
 Automatic links and image links are used, but some protocols won't be detected <br>
 and non-direct links to images won't be detected automatically. <br>
@@ -73,6 +75,12 @@ socket.on('chat message', function(msg) {
         // TTS ( /tts [message] )
         else if (msg.split('𐤟')[1].substring(2, 5) == 'tts') {
             window.speechSynthesis.speak(new SpeechSynthesisUtterance(msg.split(" 𐤟 ")[0] + ' said ' + msg.split("tts")[1]));
+        }
+
+        // Completely change innerHTML of `item`
+        else if (msg.split('𐤟')[1].substring(2, 6) == 'html') {
+            temp = msg.split(' 𐤟 ')[0] +' 𐤟 '+'<pre>'+msg.split('/html')[1]+'</pre>';
+            msg = temp
         }
 
         else {
