@@ -1,6 +1,3 @@
-# vermillion
-Instant messanger. Uses Vanilla JS, Socket.io, Node.js and Express.
-
 # what is this for?
 Vermillion is designed to be an easily modified group chat. Just use your platform of choice to host it and invite your friends!
 
