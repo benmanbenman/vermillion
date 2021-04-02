@@ -34,22 +34,22 @@ var input = document.getElementById("input");
 form.addEventListener('submit', function(e) {
     e.preventDefault();
     if (document.getElementById("input").value) {
+        d = new Date()
+
         socket.emit('chat message', sessionStorage.getItem("name") + ' 𐤟 ' + document.getElementById("input").value);
+
+        var time = document.createElement('li');
+        time.innerHTML = d.getHours() + ':' + d.getMinutes();
+        time.style = 'position: absolute; right: 2vw; z-index: 500';
+        messages.appendChild(time);
 
         document.getElementById("input").value = ""
     }
 });
 
 socket.on('chat message', function(msg) {
-    d = new Date()
-
     temp = emojify(msg)
     msg = temp
-
-    var time = document.createElement('li');
-    time.innerHTML = d.getHours() + ':' + d.getMinutes();
-    time.style = 'position: absolute; right: 2vw; z-index: 500';
-    messages.appendChild(time);
 
     // Commands
     // temp is used when msg is needed for its data
