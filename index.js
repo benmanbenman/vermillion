@@ -19,6 +19,7 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
+  res.redirect('/') 
   console.log('connection!');
 
   messages = fs.readFileSync('messages.txt', 'utf-8').split(/\r?\n/)
