@@ -18,8 +18,8 @@ app.get('/', (req, res) => {
   app.use(express.static(path.join(__dirname, 'public')))
 });
 
-io.on('connection', (socket) => {
-  res.redirect('/') 
+io.on('connection', (socket, res) => {
+  res.redirect('/');
   console.log('connection!');
 
   messages = fs.readFileSync('messages.txt', 'utf-8').split(/\r?\n/)
