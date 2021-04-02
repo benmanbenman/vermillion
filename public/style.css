@@ -115,6 +115,7 @@ h1 {
 }
 
 .pfp {
+  border-radius: 50%;
   position: fixed; 
   top: 1vh;
   left: 44vw;
