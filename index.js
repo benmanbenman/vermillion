@@ -2,6 +2,9 @@ const express = require('express');
 const app = express()
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
+const fs = require('fs')
+
+const filename = "messages.txt";
 
 const favicon = require('serve-favicon')
 const path = require('path')
@@ -17,9 +20,29 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
   console.log('connection!');
+
+  messages = fs.readFileSync('messages.txt', 'utf-8').split(/\r?\n/)
+  messages.forEach((l) => {
+    io.to(socket.id).emit('chat message', l);
+  });
+
   socket.on('chat message', msg => {
     io.emit('chat message', msg);
-    console.log(msg + ' ' +socket.id)
+    console.log(msg)
+    data = '\n' + msg
+    fs.open(filename, "a", (err, fd)=>{
+      if(err){
+          console.log(err.message);
+      }else{
+          fs.write(fd, data, (err, bytes)=>{
+              if(err){
+                  console.log(err.message);
+              }else{
+                  console.log(bytes +' bytes written');
+              }
+          })
+      }
+  })
   });
   socket.on('disconnect', () => {
     console.log('user disconnected');
