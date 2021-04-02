@@ -1,5 +1,5 @@
 # what is this for?
-Vermillion is a group chat that you can effortlessly customise. Just host it on your platform of choice and send a link to your friends!
+Vermillion is a group chat that you can customise effortlessly. Just host it on your platform of choice and send a link to your friends!
 
 # installation
 First, either `git clone` or download the repository.
