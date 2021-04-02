@@ -7,7 +7,7 @@ First, either `git clone` or download the repository.
 Then `npm init` the folder and `npm start` it. You can then connect to the app at http://localhost:3001.
 
 # where should i host vermillion?
-I would recommend Heroku because it is free and fairly quick, but it should work on many other platforms. If you just want to try it out with your friends try localtunnel: https://localtunnel.github.io.
+I would recommend Heroku because it is free and fairly quick, but it should work on other platforms that support Node.js with Express. If you just want to try it out with your friends I would recommend hosting locally and using localtunnel to allow your friends to connect: https://localtunnel.github.io.
 
 # features
 - Persistent messages
