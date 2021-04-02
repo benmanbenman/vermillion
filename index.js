@@ -23,6 +23,7 @@ io.on('connection', (socket) => {
 
   messages = fs.readFileSync('messages.txt', 'utf-8').split(/\r?\n/)
   messages.forEach((l) => {
+    console.log(socket.id)
     io.to(socket.id).emit('chat message', l);
   });
 
