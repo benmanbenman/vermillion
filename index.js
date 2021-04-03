@@ -16,7 +16,7 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.get('/', (req, res) => {
-  res.redirect('/index.html')
+  res.redirect('index.html')
 });
 
 io.on('connection', (socket) => {

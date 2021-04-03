@@ -17,8 +17,8 @@ asked for help.
 <br>
 /tts [message] - sends a text to speech message.
 <br>
-/html [html] - alter the innerHTML of the message.
 <br>
+You can display any html you would like in your message using tags.
 <br>
 Automatic links and image links are used, but some protocols won't be detected <br>
 and non-direct links to images won't be detected automatically. <br>
