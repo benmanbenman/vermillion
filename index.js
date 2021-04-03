@@ -21,6 +21,7 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
   console.log('connection!');
+  socket.emit('connection', 'person join');
 
   messages = fs.readFileSync('messages.txt', 'utf-8').split(/\r?\n/)
   messages.forEach((l) => {
