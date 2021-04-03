@@ -146,6 +146,8 @@ h1 {
   color: white;
 }.dark .header {
   background-color: black;
+}.dark a {
+  color: white;
 }
 
 ::selection {
@@ -175,7 +177,6 @@ h1 {
   }
 
   .pfp {
-    top: 1vh;
     left: 40vw;
     position: absolute;
   }
