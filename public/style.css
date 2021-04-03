@@ -148,12 +148,8 @@ h1 {
   background-color: black;
 }
 
-.dark ::selection {
-  background-color:  #5539cc;
-}
-
 ::selection {
-  background-color: yellow;
+  background-color: #5539cc;
 }
 
 @media screen and (max-width: 767px) {
