@@ -13,12 +13,13 @@ const port = process.env.PORT || 3001;
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
+
+app.use(express.static(path.join(__dirname, 'public')))
 app.get('/', (req, res) => {
   res.redirect('/index.html')
-  app.use(express.static(path.join(__dirname, 'public')))
 });
 
-io.on('connection', (socket, res) => {
+io.on('connection', (socket) => {
   console.log('connection!');
 
   messages = fs.readFileSync('messages.txt', 'utf-8').split(/\r?\n/)
