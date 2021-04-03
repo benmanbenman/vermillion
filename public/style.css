@@ -148,6 +148,14 @@ h1 {
   background-color: black;
 }
 
+.dark ::selection {
+  background-color:  #5539cc;
+}
+
+::selection {
+  background-color: yellow;
+}
+
 @media screen and (max-width: 767px) {
   #messages {
     top: 10vh;
