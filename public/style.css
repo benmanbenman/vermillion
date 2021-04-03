@@ -150,6 +150,7 @@ h1 {
 
 ::selection {
   background-color: #5539cc;
+  color: white;
 }
 
 @media screen and (max-width: 767px) {
