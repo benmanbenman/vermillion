@@ -173,7 +173,7 @@ h1 {
   input {
     border-radius: 0;
     font-size: 16px;
-    height: 2vh;
+    height: 4vh;
   }
 
   .pfp {
@@ -200,8 +200,14 @@ h1 {
   } 
 }
 
-@media screen and (max-width: 420) {
+@media screen and (max-width: 420px) {
   .pfp {
     left: 20vw;
-  } 
+    }
+}
+
+@media screen and (max-height: 763px) {
+	.header {
+		height: 15vh;
+	}
 }
