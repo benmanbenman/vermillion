@@ -1,5 +1,3 @@
-console.log(typeof(localStorage.getItem("darkmode")) + ": " + localStorage.getItem("darkmode"))
-
 switch(localStorage.getItem("darkmode")) {
 	case null:
 		console.log("none")
@@ -15,6 +13,12 @@ switch(localStorage.getItem("darkmode")) {
 	default:
 		console.log("other")
 }
+
+if (sessionStorage.getItem("refreshed") == null) {
+	window.location.reload();
+}
+
+sessionStorage.setItem("refreshed", true)
 
 // Dark mode
 const dark = () => {
