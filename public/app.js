@@ -4,6 +4,8 @@ const removeChilds = (parent) => {
     }
 };
 
+removeChilds(document.getElementById("messages"))
+
 switch (localStorage.getItem("darkmode")) {
 	case null:
 		console.log("none");
