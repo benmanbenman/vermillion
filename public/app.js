@@ -1,3 +1,9 @@
+const removeChilds = (parent) => {
+    while (parent.lastChild) {
+        parent.removeChild(parent.lastChild);
+    }
+};
+
 switch (localStorage.getItem("darkmode")) {
 	case null:
 		console.log("none");

@@ -19,7 +19,7 @@
   <body id="body" onload="window.speechSynthesis.cancel()">
     <script type="text/javascript" src="app.js"></script>
 
-    <ul scroll="no" id="messages"></ul>
+    <ul scroll="no" id="messages" onload="removeChilds(document.getElementById("messages"))"></ul>
 
     <!-- If no messages are sent, display a message to show nothing is wrong -->
     <div id="no_messages">
