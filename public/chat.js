@@ -36,7 +36,6 @@ form.addEventListener('submit', function(e) {
     if (document.getElementById("input").value) {
         d = new Date()
 	
-	
         socket.emit('chat message', sessionStorage.getItem("name") + ' 𐤟 ' + document.getElementById("input").value);
 
         var time = document.createElement('li');
